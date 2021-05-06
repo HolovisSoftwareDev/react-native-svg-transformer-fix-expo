@@ -3,7 +3,7 @@
  
 ## how to configure
  
- Install the module to your expo project using npm or yarn
+ After installing the react-native-svg-transformer module and configuring it correctly, install the module to your expo project using npm or yarn
  
  ```
  yarn add lucassouza16/react-native-svg-transformer-fix-expo#latest
