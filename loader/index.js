@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = function (source) {
 
-  let svgrrc = '{}'
+  let svgrrc = '{}';
 
   try {
     svgrrc = fs.readFileSync(path.resolve(__dirname, '../../../.svgrrc'));
@@ -11,13 +11,13 @@ module.exports = function (source) {
     console.warn(".svgrrc file not exists.");
   }
 
-  const reg = /import\s+([0-9a-zA-Z]+)\s+from\s+("|')([^\s\n\;\'\"]+\.svg)("|')/g
+  const reg = /import\s+([0-9a-zA-Z]+)\s+from\s+("|')([^\s\n\;\'\"]+\.svg)("|')/g;
   const repl = `
   import __$1_Base64 from "$3";
   const $1 = __ReactNativeSvgTransformerExpoFix(__$1_Base64);
-  `
+  `;
 
-  let js = source
+  let js = source;
 
   if (reg.test(js)) {
     js = (`
@@ -26,5 +26,5 @@ module.exports = function (source) {
         `).replace(reg, repl);
   }
 
-  return js
+  return js;
 }
