@@ -19,7 +19,7 @@ module.exports = function (source) {
 
   let js = source
 
-  if (js.search(reg) != -1) {
+  if (reg.test(js)) {
     js = (`
        const __ReactNativeSvgTransformerExpoFix = require('react-native-svg-transformer-fix-expo').default(${svgrrc});
         ${js}
