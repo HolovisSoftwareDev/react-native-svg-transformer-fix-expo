@@ -1,6 +1,6 @@
 {
   "name": "react-native-svg-transformer-fix-expo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Module to correct the error of the react-native-svg-transformer module in the latest sdk web expo versions",
   "main": "index.js",
   "repository": "lucassouza16/react-native-svg-transformer-fix-expo",
