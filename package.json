@@ -1,0 +1,14 @@
+{
+  "name": "react-native-svg-transformer-fix-expo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": "",
+  "scripts": {},
+  "author": "Lucas Souza",
+  "license": "MIT",
+  "files": [],
+  "dependencies": {},
+  "peerDependencies": {},
+  "devDependencies": {}
+}
