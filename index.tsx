@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 
 interface Props {
     source: string
@@ -11,7 +11,7 @@ interface Props {
 const regBase64 = /^(.+)\,(.+)$/
 const regPropReplace = /^\s*\{\s*([a-zA-Z0-9]*)\.?([a-zA-Z0-9]+)\s*\}\s*$/
 
-const Index = ({ source, replace, ...rest }: Props) => {
+const Index = memo(({ source, replace, ...rest }: Props) => {
 
     const { width, height } = {
         width: 10,
@@ -44,20 +44,25 @@ const Index = ({ source, replace, ...rest }: Props) => {
     }
 
     useEffect(() => {
+
+        const ab = new AbortController()
+
         if (source) {
             if (regBase64.test(source)) {
                 setXml(atob(source.replace(regBase64, '$2')))
             } else {
-                fetch(window.location.origin + source)
+                fetch(window.location.origin + source, { signal: ab.signal })
                     .then(res => res.text())
                     .then(xml => setXml(xml))
                     .catch(e => console.error(e))
             }
         }
-    }, [source])
+
+        return () => { ab.abort() }
+    }, [])
 
     return xml ? <img width={width} height={height} src={xmlToBase64(xml)} /> : null
-}
+})
 
 export default (svgrrc: any) => {
 
