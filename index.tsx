@@ -14,8 +14,8 @@ const regPropReplace = /^\s*\{\s*([a-zA-Z0-9]*)\.?([a-zA-Z0-9]+)\s*\}\s*$/
 const Index = memo(({ source, replace, ...rest }: Props) => {
 
     const { width, height } = {
-        width: 10,
-        height: 10,
+        width: 'auto',
+        height: 'auto',
         ...rest,
     }
 
@@ -30,8 +30,10 @@ const Index = memo(({ source, replace, ...rest }: Props) => {
             let value = replace[key]
 
             if (regPropReplace.test(value)) {
+
                 value = rest[value.replace(regPropReplace, '$2')]
-                if (!value) break;
+
+                if (value == undefined) break;
             }
 
             nxml = nxml.replace(
