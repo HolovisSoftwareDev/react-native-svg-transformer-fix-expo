@@ -1,7 +1,7 @@
 # react-native-svg-transformer-fix-expo
- Module to correct the error of the react-native-svg-transformer module in the latest sdk web expo versions
+ Module to temporarily correct the error of the react-native-svg-transformer module in the latest versions of the expo web sdk
  
- ## how to configure
+## how to configure
  
  Install the module to your expo project using npm or yarn
  
