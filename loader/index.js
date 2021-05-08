@@ -13,15 +13,14 @@ module.exports = function (source) {
 
   const reg = /import\s+([0-9a-zA-Z]+)\s+from\s+("|')([^\s\n\;\'\"]+\.svg)("|')/g;
   const repl = `
-  import __$1_Base64 from "$3";
-  const $1 = __ReactNativeSvgTransformerExpoFix(__$1_Base64);
+  const $1 = __ReactNativeSvgLoader(import($2$3$4));
   `;
 
   let js = source;
 
   if (reg.test(js)) {
     js = (`
-       const __ReactNativeSvgTransformerExpoFix = require('react-native-svg-transformer-fix-expo').default(${svgrrc});
+       const __ReactNativeSvgLoader = require('react-native-svg-transformer-fix-expo').default(${svgrrc});
         ${js}
         `).replace(reg, repl);
   }

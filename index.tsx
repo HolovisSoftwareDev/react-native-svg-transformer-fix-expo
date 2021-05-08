@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 
 interface Props {
-    source: string
+    source: any
     width?: number | string
     height?: number | string
     fill?: string
@@ -11,7 +11,7 @@ interface Props {
 const regBase64 = /^(.+)\,(.+)$/
 const regPropReplace = /^\s*\{\s*([a-zA-Z0-9]*)\.?([a-zA-Z0-9]+)\s*\}\s*$/
 
-const Index = memo(({ source, replace, ...rest }: Props) => {
+const Index = memo(({ source: orsource, replace, ...rest }: Props) => {
 
     const { width, height } = {
         width: 'auto',
@@ -20,6 +20,7 @@ const Index = memo(({ source, replace, ...rest }: Props) => {
     }
 
     const [xml, setXml] = useState(null)
+    const [source, setSource] = useState(null)
 
     const xmlToBase64 = (xml: string) => {
 
@@ -37,7 +38,7 @@ const Index = memo(({ source, replace, ...rest }: Props) => {
             }
 
             nxml = nxml.replace(
-                new RegExp(`([a-z-A-Z0-9]="|')(${key})("|')`, 'g')
+                new RegExp(`([a-z-A-Z0-9\-\_]+="|')(${key})("|')`, 'g')
                 , `$1${value}$3`
             )
         }
@@ -46,6 +47,14 @@ const Index = memo(({ source, replace, ...rest }: Props) => {
     }
 
     useEffect(() => {
+
+        if (!source) {
+            if (orsource instanceof String) {
+                setSource(orsource)
+            } else {
+                orsource.then((source: any) => setSource(source.default))
+            }
+        }
 
         const ab = new AbortController()
 
@@ -61,7 +70,7 @@ const Index = memo(({ source, replace, ...rest }: Props) => {
         }
 
         return () => { ab.abort() }
-    }, [])
+    }, [source])
 
     return xml ? <img width={width} height={height} src={xmlToBase64(xml)} /> : null
 })
