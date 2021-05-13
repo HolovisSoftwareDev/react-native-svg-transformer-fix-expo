@@ -54,11 +54,10 @@ const Index = memo(({ source: orsource, replace, ...rest }: Props) => {
             } else {
                 orsource.then((source: any) => setSource(source.default))
             }
-        }
+        } else {
 
-        const ab = new AbortController()
+            const ab = new AbortController()
 
-        if (source) {
             if (regBase64.test(source)) {
                 setXml(atob(source.replace(regBase64, '$2')))
             } else {
@@ -67,9 +66,10 @@ const Index = memo(({ source: orsource, replace, ...rest }: Props) => {
                     .then(xml => setXml(xml))
                     .catch(e => console.error(e))
             }
+
+            return () => { ab.abort() }
         }
 
-        return () => { ab.abort() }
     }, [source])
 
     return xml ? <img width={width} height={height} src={xmlToBase64(xml)} /> : null
