@@ -4,6 +4,7 @@
   "description": "Module to correct the error of the react-native-svg-transformer module in the latest sdk web Expo versions",
   "main": "index.js",
   "repository": "lucassouza16/react-native-svg-transformer-fix-expo",
+  "package-name": "git+ssh://git@github.com:lucassouza16/react-native-svg-transformer-fix-expo.git",
   "scripts": {},
   "author": "Lucas Souza",
   "license": "MIT",
