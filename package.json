@@ -8,7 +8,10 @@
   "scripts": {},
   "author": "Lucas Souza",
   "license": "MIT",
-  "files": [],
+  "files": [
+    "./loader/**/*",
+    "./index.tsx"
+  ],
   "dependencies": {},
   "peerDependencies": {},
   "devDependencies": {}
