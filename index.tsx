@@ -62,7 +62,7 @@ const Index = memo(({ source: orsource, replace, ...rest }: Props) => {
             if (regBase64.test(source)) {
                 setXml(atob(source.replace(regBase64, '$2')))
             } else {
-                fetch(window.location.origin + source, { signal: ab.signal })
+                fetch(source, { signal: ab.signal })
                     .then(res => res.text())
                     .then(xml => setXml(xml))
                     .catch(e => console.error(e))
