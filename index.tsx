@@ -6,6 +6,7 @@ interface Props {
     height?: number | string
     fill?: string
     replace: any
+    className?: string
 }
 
 const regBase64 = /^(.+)\,(.+)$/
@@ -13,7 +14,7 @@ const regPropReplace = /^\s*\{\s*([a-zA-Z0-9]*)\.?([a-zA-Z0-9]+)\s*\}\s*$/
 
 const Index = memo(({ source: orsource, replace, ...rest }: Props) => {
 
-    const { width, height } = {
+    const { width, height, className } = {
         width: 'auto',
         height: 'auto',
         ...rest,
@@ -72,7 +73,7 @@ const Index = memo(({ source: orsource, replace, ...rest }: Props) => {
 
     }, [source])
 
-    return xml ? <img width={width} height={height} src={xmlToBase64(xml)} /> : null
+    return xml ? <img className={className} width={width} height={height} src={xmlToBase64(xml)} /> : null
 })
 
 export default (svgrrc: any) => {
