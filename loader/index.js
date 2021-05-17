@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = function (source) {
 
-  const reg = /import\s+([0-9a-zA-Z]+)\s+from\s+("|')([^\s\n\;\'\"]+\.svg)("|')/g;
+  const reg = /import\s+([0-9a-zA-Z\_\$]+)\s+from\s+("|')([^\s\n\;\'\"]+\.svg)("|')/g;
   const repl = `
   const $1 = __ReactNativeSvgLoader(import($2$3$4));
   `;
