@@ -9,7 +9,7 @@
  yarn add lucassouza16/react-native-svg-transformer-fix-expo#latest
  ```
  
- Add the code to your webpack.config.js file, if it doesn't exist, create it at the root of your expo project
+ Add the loader to your webpack.config.js file, if it doesn't exist, create it at the root of your expo project
  
 ```js
 const createExpoWebpackConfigAsync = require('@expo/webpack-config');
